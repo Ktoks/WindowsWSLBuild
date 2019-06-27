@@ -54,21 +54,6 @@ if [ $err != 0 ] ; then
     echo "error installing LaTeX: $err"
     exit 1
 fi
-apt install zsh -y
-err=$?
-if [ $err != 0 ] ; then
-    echo "error installing zsh: $err"
-    exit 1
-fi
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-err=$?
-if [ $err != 0 ] ; then
-    echo "error installing oh my zsh: $err"
-    exit 1
-fi
-echo "if [ -t 1 ] ; then
-exec zsh
-fi" >> ~/.bashrc
 apt install vim-gtk
 err=$?
 if [ $err != 0 ] ; then
@@ -115,4 +100,19 @@ Please copy your rsa key and paste it to
 your github's authorized keys using this command:
 cat ~/.ssh/id_rsa.pub
 ---------------------"
-echo "Restart this terminal for all changes to take effect."
+apt install zsh -y
+err=$?
+if [ $err != 0 ] ; then
+    echo "error installing zsh: $err"
+    exit 1
+fi
+echo "if [ -t 1 ] ; then
+exec zsh
+fi" >> ~/.bashrc
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
+err=$?
+if [ $err != 0 ] ; then
+    echo "error installing oh my zsh: $err"
+    exit 1
+fi
+exec bash
