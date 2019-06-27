@@ -78,14 +78,6 @@ if [ $err != 0 ] ; then
     echo "error installing npm: $err"
     exit 1
 fi
-mkdir ~/projects
-cd ~/projects || exit 1
-npm install vue
-err=$?
-if [ $err != 0 ] ; then
-    echo "error installing vue: $err"
-    exit 1
-fi
 apt update && apt dist-upgrade -y
 echo "---------------------
 It is suggested you run these commands with your
