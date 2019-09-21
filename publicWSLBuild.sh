@@ -6,8 +6,6 @@ if [ $err != 0 ] ; then
     echo "error installing sudo: $err"
     exit 1
 fi
-adduser harbad
-usermod -aG sudo harbad
 apt update
 apt dist-upgrade -y
 err=$?
@@ -36,10 +34,20 @@ git config --global core.autocrlf false
 cd ~ || exit 1
 mkdir .ssh
 chmod 700 .ssh
-apt install python3 python3-pip ipython3
+apt inst nall python3 python3-pip ipython3
 err=$?
 if [ $err != 0 ] ; then
     echo "error installing python 3, pip, or ipython 3: $err"
+    exit 1
+fi
+sudo apt-get install g++ freeglut3-dev libglu1-mesa-dev libgl1-mesa-dev valgrind libgtest-dev
+if [ $err != 0 ] ; then
+    echo "error installing g++, glut, glut, mesa, valgrind, or libgtest: $err"
+    exit 1
+fi
+sudo apt-get install gcc-multilib g++-multilib
+if [ $err != 0 ] ; then
+    echo "error installing gcc or g++ $err"
     exit 1
 fi
 apt install shellcheck
@@ -48,12 +56,12 @@ if [ $err != 0 ] ; then
     echo "error installing shellcheck: $err"
     exit 1
 fi
-apt install texlive-latex-recommended texlive-metapost texlive-fonts-recommended
-err=$?
-if [ $err != 0 ] ; then
-    echo "error installing LaTeX: $err"
-    exit 1
-fi
+# apt install texlive-latex-recommended texlive-metapost texlive-fonts-recommended
+# err=$?
+# if [ $err != 0 ] ; then
+#     echo "error installing LaTeX: $err"
+#     exit 1
+# fi
 apt install vim-gtk
 err=$?
 if [ $err != 0 ] ; then
@@ -107,4 +115,3 @@ if [ $err != 0 ] ; then
     echo "error installing oh my zsh: $err"
     exit 1
 fi
-exec bash
