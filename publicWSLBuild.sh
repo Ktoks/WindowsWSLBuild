@@ -34,7 +34,7 @@ git config --global core.autocrlf false
 cd ~ || exit 1
 mkdir .ssh
 chmod 700 .ssh
-apt inst nall python3 python3-pip ipython3
+apt install python3 python3-pip ipython3
 err=$?
 if [ $err != 0 ] ; then
     echo "error installing python 3, pip, or ipython 3: $err"
