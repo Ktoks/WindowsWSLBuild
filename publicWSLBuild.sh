@@ -60,6 +60,7 @@ if [ $err != 0 ] ; then
     echo "error installing shellcheck: $err"
     exit 1
 fi
+#### feel free to install latex, if you are going to be taking comp theory
 # apt install texlive-latex-recommended texlive-metapost texlive-fonts-recommended
 # err=$?
 # if [ $err != 0 ] ; then
