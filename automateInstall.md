@@ -38,11 +38,13 @@ wsl
 
 #############################################################
 
+## Bash Setup
+
 > This step is to allow sudo-ing:
 
 ```bash
 su
-apt-get install sudo
+apt install sudo
 adduser {yourusername}
 usermod -aG sudo {yourusername}
 su {yourusername}
@@ -51,21 +53,22 @@ su {yourusername}
 > On Debian update and upgrade to most current versions:
 
 ```bash
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo apt update
+sudo apt upgrade -y
 sudo apt dist-upgrade -y
 ```
 
 > if above steps didn't work, user setup wasn't successful
-> To install Go:
+
+###########################################################################
+
+## Set up Go for Distributed Systems
 
 ```bash
 sudo apt-get install golang-go
 ```
 
-###########################################################################
-
-> To set your GoRoot and GoPath up:
+> Set GoPATH automatically:
 
 ```bash
 sudo echo "export GOROOT=/usr/local/go
@@ -73,7 +76,7 @@ export GOPATH=$HOME/go
 export PATH=\$GOPATH/bin:#GOROOT/BIN:\$PATH" >> ~/.bashrc
 ```
 
-> To set your GoPath up:
+> Set GoPATH manually:
 
 ```bash
 sudo vim ~/.bashrc
@@ -89,7 +92,7 @@ export PATH=$GOPATH/bin:#GOROOT/BIN:$PATH
 ```
 
 > To save and exit Vim:
-Hit escape and enter:
+Hit escape and type:
 
 ```vim
 :wq
@@ -103,7 +106,8 @@ Hit escape and enter:
 source ~/.bashrc
 ```
 
-> How I set up git:
+## Set Up Git
+
 > First check for installation
 
 ```bash
@@ -123,13 +127,15 @@ git config --global user.name "{yourUsername}"
 git config --global user.email "{youremail@email.com}"
 ```
 
-> Configure autoline endings to be off -(prevents possible hidden issues)
+> Configure autoline endings to be off -(prevents possible windows vs linux issues)
 
 ```bash
 git config --global core.autocrlf false
 ```
 
-> I set up an ssh key pair to match my Windows one:
+## Configure SSH
+
+> I made my Linux machine's ssh configuration match my Windows one.
 > Go to home dir:
 
 ```bash
@@ -154,7 +160,7 @@ chmod 700 .ssh
 cd .ssh
 ```
 
-> copy your ssh keys to Linux:
+> copy your ssh keys from Windows to Linux:
 
 ```bash
 cp /mnt/c/Users/{yourUsername}/.ssh/id_rsa* .
@@ -174,26 +180,19 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 > Copy and paste this key and paste it into your authorized keys on github, bitbucket, and/or remote servers
-> Install Shellcheck for bash scripting:
+
+## Shellcheck for bash scripting:
 
 ```bash
-apt-get install shellcheck
+apt install shellcheck
 ```
+
+## Python3
 
 > Installing Python 3:
 
 ```bash
 sudo apt install python3 python3-pip ipython3
-```
-
-> Install aima-python for AI class:
-
-```bash
-git clone https://github.com/aimacode/aima-python.git
-pip install -r requirements.txt
-cd aima-python
-git submodule init
-git submodule update
 ```
 
 > Install Pytest
@@ -202,10 +201,12 @@ git submodule update
 python3 -m pip install pytest
 ```
 
+## Make Bash Easier To Use
+
 > Install zsh:
 
 ```bash
-sudo apt-get install zsh -y
+sudo apt install zsh -y
 ```
 
 > Install Oh My Zsh:
@@ -229,30 +230,33 @@ fi
 ```
 
 > Save and quit.
+
+## Install VIM
+
 > Install vim gtk2 gui 8.0.
 
 ```bash
-sudo apt-get install vim-gtk
+sudo apt install vim-gtk
 ```
 
-######## Comp Theory
+## Latex For Comp Theory
 
 ```bash
-sudo apt-get install texlive-latex-recommended texlive-metapost texlive-fonts-recommended -y
+sudo apt install texlive-latex-recommended texlive-metapost texlive-fonts-recommended -y
 ```
 
-############# Web Stuff ##########
+## Heroku, NPM, Vue For Web Apps
 
-> Install Heroku:
+> Heroku:
 
 ```bash
 sudo curl https://cli-assets.heroku.com/install.sh | sh
 ```
 
-> Install NPM:
+> NPM:
 
 ```bash
-sudo apt-get install build-essential
+sudo apt install build-essential
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 ```
 
