@@ -28,8 +28,12 @@ if [ $err = 127 ] ; then
     apt install git
     err=0
 fi
-git config --global user.name "kacystocks"
-git config --global user.email "kstocks0811@gmail.com"
+echo "\n\n\n************** Attention **************"
+echo "You should probably configure git:"
+echo "git config --global user.name \"myusername\""
+echo "git config --global user.email \"myemail@email.com\""
+echo "\n\n\n************** Attention **************"
+
 git config --global core.autocrlf false
 cd ~ || exit 1
 mkdir .ssh
@@ -40,12 +44,12 @@ if [ $err != 0 ] ; then
     echo "error installing python 3, pip, or ipython 3: $err"
     exit 1
 fi
-sudo apt-get install g++ freeglut3-dev libglu1-mesa-dev libgl1-mesa-dev valgrind libgtest-dev
+sudo apt install g++ freeglut3-dev libglu1-mesa-dev libgl1-mesa-dev valgrind libgtest-dev
 if [ $err != 0 ] ; then
     echo "error installing g++, glut, glut, mesa, valgrind, or libgtest: $err"
     exit 1
 fi
-sudo apt-get install gcc-multilib g++-multilib
+sudo apt install gcc-multilib g++-multilib
 if [ $err != 0 ] ; then
     echo "error installing gcc or g++ $err"
     exit 1

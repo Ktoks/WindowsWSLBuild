@@ -1,25 +1,21 @@
-```
-This script is for Dixie State University CS students
-to get get their systems set up for each class that I have
-taken in the department.
+# Automated Install Script For WSL On Windows
 
-First and foremost, I installed Debian, I chose Debian over Ubuntu
-because I felt it was necissary to learn about Debian. I have only 
-used a few different Linux distros and I want to broaden my horizons.
-```
+## This script is for Dixie State University CS students to get get their systems set up for each class that I have taken in the department
+
+First and foremost, choose the linux distribution that has everything you need. I chose debian for this install script.
 
 > Click search bar and type
-Windows Powershell
-
+__Windows Powershell__
 > Click "Run as Administrator"
-
 > Input the following commands and press enter:
-```
+
+```powershell
 Get-AppxPackage Microsoft-Windows-Subsystem-Linux | Install-AppxPackage
 ```
 
 > Once it has finished running those commands input the following
-```
+
+```powershell
 Invoke-WebRequest `
     -Uri "https://aka.ms/wsl-debian" `
     -OutFile "~Debian.appx" `
@@ -27,20 +23,24 @@ Invoke-WebRequest `
 ```
 
 > Or maybe try this one:
-```
+
+```powershell
 Add-AppxPackage `
     -Path "~Debian.appx" ;
 ```
 
 > Configure your new UNIX username and password
-
 > To run the windows subsystem for linux inside Powershell:
+
+```powershell
 wsl
+```
 
 #############################################################
 
 > This step is to allow sudo-ing:
-```
+
+```bash
 su
 apt-get install sudo
 adduser {yourusername}
@@ -49,190 +49,239 @@ su {yourusername}
 ```
 
 > On Debian update and upgrade to most current versions:
-```
+
+```bash
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt dist-upgrade -y
 ```
-> if above steps didn't work, user setup wasn't successful
 
+> if above steps didn't work, user setup wasn't successful
 > To install Go:
-```
+
+```bash
 sudo apt-get install golang-go
 ```
 
 ###########################################################################
 
 > To set your GoRoot and GoPath up:
-```
+
+```bash
 sudo echo "export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=\$GOPATH/bin:#GOROOT/BIN:\$PATH" >> ~/.bashrc
 ```
 
 > To set your GoPath up:
-```
+
+```bash
 sudo vim ~/.bashrc
 ```
+
 > Add this to .bashrc on the bottom
-```
+
+```vim
 # Go Global Variables
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:#GOROOT/BIN:$PATH
 ```
+
 > To save and exit Vim:
 Hit escape and enter:
-```
+
+```vim
 :wq
 ```
 
 #################################################################
 
 > To make your changes available now:
-```
+
+```bash
 source ~/.bashrc
 ```
 
 > How I set up git:
 > First check for installation
-```
+
+```bash
 git --version
 ```
+
 > If not installed:
-```
+
+```bash
 sudo apt install git
 ```
-> Setup for use with your profile:
-```
+
+> git setup for use with your profile:
+
+```bash
 git config --global user.name "{yourUsername}"
 git config --global user.email "{youremail@email.com}"
 ```
+
 > Configure autoline endings to be off -(prevents possible hidden issues)
-```
+
+```bash
 git config --global core.autocrlf false
 ```
 
 > I set up an ssh key pair to match my Windows one:
 > Go to home dir:
-```
+
+```bash
 cd ~
 ```
+
 > Make your SSH directory:
-```
+
+```bash
 mkdir .ssh
 ```
+
 > Change its access:
-```
+
+```bash
 chmod 700 .ssh
 ```
+
 > Go to SSH directory:
-```
+
+```bash
 cd .ssh
 ```
+
 > copy your ssh keys to Linux:
-```
+
+```bash
 cp /mnt/c/Users/{yourUsername}/.ssh/id_rsa* .
 ```
+
 > Change their access:
-```
+
+```bash
 chmod 600 id_rsa
 chmod 644 id_rsa.pub
 ```
 
 > Copy your public ssh key to github.com:
-```
+
+```bash
 cat ~/.ssh/id_rsa.pub
 ```
-> Copy and paste this key and paste it into your authorized keys on github, bitbucket, and/or remote servers
 
+> Copy and paste this key and paste it into your authorized keys on github, bitbucket, and/or remote servers
 > Install Shellcheck for bash scripting:
-```
+
+```bash
 apt-get install shellcheck
 ```
 
 > Installing Python 3:
-```
+
+```bash
 sudo apt install python3 python3-pip ipython3
 ```
 
 > Install aima-python for AI class:
-```
+
+```bash
 git clone https://github.com/aimacode/aima-python.git
 pip install -r requirements.txt
 cd aima-python
 git submodule init
 git submodule update
 ```
+
 > Install Pytest
-```
-pip install pytest
+
+```bash
+python3 -m pip install pytest
 ```
 
 > Install zsh:
-```
+
+```bash
 sudo apt-get install zsh -y
 ```
 
 > Install Oh My Zsh:
-```
+
+```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 > Setup zsh:
-```
+
+```bash
 sudo vim ~/.bashrc
 ```
+
 > input:
-```
+
+```vim
 if [ -t 1 ] ; then
 exec zsh
 fi
 ```
-> Save and quit.
 
+> Save and quit.
 > Install vim gtk2 gui 8.0.
-```
+
+```bash
 sudo apt-get install vim-gtk
 ```
 
 ######## Comp Theory
 
-```
+```bash
 sudo apt-get install texlive-latex-recommended texlive-metapost texlive-fonts-recommended -y
 ```
 
 ############# Web Stuff ##########
 
 > Install Heroku:
-```
+
+```bash
 sudo curl https://cli-assets.heroku.com/install.sh | sh
 ```
 
 > Install NPM:
-```
+
+```bash
 sudo apt-get install build-essential
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 ```
+
 > Restart terminal and run:
-```
+
+```bash
 nvm install stable
 ```
+
 > Command to use when using node per project:
-```
+
+```bash
 nvm use stable
 ```
 
 > Install Vue:
-```
+
+```bash
 npm install vue
 ```
+
 > command to use when using vue locally:
 
+## Windows optimizations
 
-Optional: I ran the following script int powershell to turn off programs that 
+Optional: I ran the following script int powershell to turn off programs that
 Windows runs in the background:
-```
+
+```powershell
 Get-AppxPackage 3dbuilder | Remove-AppxPackage
 Get-AppxPackage windowsalarms | Remove-AppxPackage
 Get-AppxPackage windowscommunicationsapps | Remove-AppxPackage
