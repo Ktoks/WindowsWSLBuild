@@ -4,10 +4,6 @@ set -x
 cd || exit 1
 apt update
 apt dist-upgrade -y
-apt install golang-go
-printf "export GOROOT=/usr/local/go
-export GOPATH=\$HOME/go
-export PATH=\$GOPATH/bin:#GOROOT/BIN:\$PATH" >> ~/.bashrc
 git --version
 err=$?
 if [ $err = 127 ] ; then
@@ -26,10 +22,6 @@ mkdir .ssh
 chmod 700 .ssh
 apt install python3 python3-pip ipython3
 apt install shellcheck
-#### feel free to install latex, if you are going to be taking comp theory
-# apt install texlive-latex-recommended texlive-metapost texlive-fonts-recommended
-# t install vim-gtk
-curl https://cli-assets.heroku.com/install.sh | sh
 apt install build-essential
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 apt update && apt dist-upgrade -y
